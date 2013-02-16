@@ -1,0 +1,25 @@
+package com.example.android_activity_test;
+
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class SecondActivity extends Activity{
+	private TextView textView=null;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_second);
+		
+		//½«textView°ó¶¨TextView¿Ø¼þ
+		textView=(TextView)findViewById(R.id.secondActivity_textview);
+		Intent intent=getIntent();
+		Bundle data=intent.getExtras();
+		String text="name : "+data.getString("name")+"   age : "+data.getInt("age");
+		textView.setText(text);
+	}
+
+}

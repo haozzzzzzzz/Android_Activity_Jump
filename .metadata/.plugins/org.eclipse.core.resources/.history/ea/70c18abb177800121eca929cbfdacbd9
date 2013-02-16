@@ -1,0 +1,39 @@
+package com.example.android_activity_test;
+
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class SecondActivity extends Activity{
+	private TextView textView=null;
+	private Button button=null;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_second);
+		//将button绑定Button控件
+		button=(Button)findViewById(R.id.secondActivity_btn);
+		button.setOnClickListener(new OnClickListener(){
+			public void onClick(View v)
+			{
+				//启动外部服务
+				Uri uri=Uri.parse("http://haozi.freetzi.com");
+				Intent intent=new Intent(Intent.ACTION_WEB_SEARCH,uri);
+			}
+		});
+		//将textView绑定TextView控件
+		textView=(TextView)findViewById(R.id.secondActivity_textview);
+		Intent intent=getIntent();
+		Bundle data=intent.getExtras();
+		String text="name : "+data.getString("name")+"   age : "+data.getInt("age");
+		textView.setText(text);
+	}
+
+}

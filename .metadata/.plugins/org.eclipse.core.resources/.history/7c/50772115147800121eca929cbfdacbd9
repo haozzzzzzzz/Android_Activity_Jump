@@ -1,0 +1,43 @@
+package com.example.android_activity_test;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+
+public class MainActivity extends Activity {
+	private Button button=null;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        //将button绑定Button控件
+        button=(Button)findViewById(R.id.mainAvtivity_button);
+        button.setOnClickListener(new OnClickListener(){
+        	public void onClick(View v)
+        	{
+        		//创建Intent
+        		Intent intent=new Intent();
+        		//设置从当前对象跳转到SecondActivity活动对象
+        		intent.setClass(MainActivity.this, SecondActivity.class);
+        		//设置Intent附带的内容
+        		Bundle data=new Bundle();
+        		data.putString("name", "haozi");
+        		data.putInt("year", 20);
+        		intent.putExtras(data);
+        		//启动Activity
+        		MainActivity.this.startActivity(intent);
+        	}
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
+}
